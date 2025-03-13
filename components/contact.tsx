@@ -2,17 +2,11 @@
 
 import type React from "react"
 
-import { useState, useRef } from "react"
+import { useRef } from "react"
 import { motion, useInView } from "framer-motion"
 import { Mail, MapPin, Phone } from "lucide-react"
 
 export default function Contact() {
-  const [formState, setFormState] = useState({
-    name: "",
-    email: "",
-    message: "",
-  })
-
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, amount: 0.1 })
 
