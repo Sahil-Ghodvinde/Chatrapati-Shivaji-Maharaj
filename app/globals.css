@@ -2,26 +2,139 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: 0 0% 8%;
+    --foreground: 38 57% 79%;
+
+    --primary: 28 100% 50%;
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 25 60% 79%;
+    --secondary-foreground: 0 0% 9%;
+
+    --accent: 28 100% 50%;
+    --accent-foreground: 0 0% 98%;
+
+    --stone: 16 25% 29%;
+    --stone-foreground: 0 0% 98%;
+
+    --parchment: 38 57% 79%;
+    --parchment-foreground: 0 0% 9%;
+
+    --border: 20 30% 20%;
+    --ring: 28 100% 50%;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+@layer base {
+  body {
+    @apply bg-background text-foreground;
   }
 }
+
+.hero-gradient {
+  background: linear-gradient(to top, rgba(21, 21, 21, 1) 0%, rgba(21, 21, 21, 0) 100%);
+}
+
+.section-divider {
+  position: relative;
+  height: 4px;
+  background-color: hsl(var(--stone));
+  margin: 2rem 0;
+  overflow: visible;
+}
+
+.section-divider::before {
+  content: "";
+  position: absolute;
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(90deg, hsl(var(--primary)) 0%, hsl(var(--accent)) 100%);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.timeline-track {
+  @apply absolute left-1/2 w-1 bg-stone h-full transform -translate-x-1/2;
+}
+
+.timeline-node {
+  @apply absolute left-1/2 w-5 h-5 rounded-full bg-primary border-2 border-background transform -translate-x-1/2;
+  box-shadow: 0 0 15px rgba(255, 119, 0, 0.5);
+}
+
+.fort-card {
+  @apply relative overflow-hidden rounded-lg bg-background/50 backdrop-blur-sm border border-stone/50 transition-all duration-500;
+}
+
+.fort-card:hover {
+  @apply border-primary/70 shadow-lg;
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 10px 25px -5px rgba(255, 119, 0, 0.3);
+}
+
+.quote-card {
+  @apply relative p-6 rounded-lg bg-stone/20 border border-stone/50;
+  background-image: url('/fort-pattern.svg');
+}
+
+.quote-card::before {
+  @apply absolute text-8xl text-primary/20 font-serif -top-5 -left-2;
+}
+
+.sword-divider {
+  position: relative;
+  height: 2px;
+  background-color: hsl(var(--stone));
+  margin: 2rem auto;
+  width: 80%;
+  max-width: 500px;
+}
+
+.sword-divider::before,
+.sword-divider::after {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-image: url('/sword.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  top: -9px;
+}
+
+.sword-divider::before {
+  left: 0;
+  transform: rotate(45deg);
+}
+
+.sword-divider::after {
+  right: 0;
+  transform: rotate(-45deg);
+}
+
+.scroll-indicator {
+  @apply absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0) translateX(-50%);
+  }
+  40% {
+    transform: translateY(-20px) translateX(-50%);
+  }
+  60% {
+    transform: translateY(-10px) translateX(-50%);
+  }
+}
+
+.fort-pattern {
+  background-image: url('/home1.jpg');
+}
+
