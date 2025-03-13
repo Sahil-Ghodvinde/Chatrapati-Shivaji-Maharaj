@@ -9,7 +9,7 @@ export default function Footer() {
           <div>
             <h3 className="text-xl font-serif font-semibold text-parchment mb-4">Chhatrapati Shivaji Maharaj</h3>
             <p className="text-parchment/70 mb-4">
-              A historical tribute to the founder of the Maratha Empire and one of India's greatest leaders.
+              A historical tribute to the founder of the Maratha Empire and one of India&apos;s greatest leaders.
             </p>
             <div className="flex space-x-4">
               <Link href="#" className="text-parchment/70 hover:text-primary transition-colors duration-300">

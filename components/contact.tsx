@@ -4,7 +4,7 @@ import type React from "react"
 
 import { useState, useRef } from "react"
 import { motion, useInView } from "framer-motion"
-import { Send, Mail, MapPin, Phone } from "lucide-react"
+import { Mail, MapPin, Phone } from "lucide-react"
 
 export default function Contact() {
   const [formState, setFormState] = useState({
@@ -13,34 +13,8 @@ export default function Contact() {
     message: "",
   })
 
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [isSubmitted, setIsSubmitted] = useState(false)
-
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, amount: 0.1 })
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormState({
-      ...formState,
-      [e.target.name]: e.target.value,
-    })
-  }
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false)
-      setIsSubmitted(true)
-      setFormState({
-        name: "",
-        email: "",
-        message: "",
-      })
-    }, 1500)
-  }
 
   return (
     <section id="contact" className="py-20" ref={ref}>
@@ -92,8 +66,6 @@ export default function Contact() {
               </div>
             </div>
           </div>
-
-         
         </motion.div>
       </div>
     </section>
